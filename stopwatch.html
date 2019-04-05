@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <meta charset = "UTF-8">
+   </head>
+   <body>
+      <center>
+         <h1 id = "timer">
+         00:00:00
+         <h1>
+         <button onclick = start()>Start Timer</button>
+         <button onclick = pause()>Pause Timer</button>
+         <button onclick = Reset()>Reset Timer</button>
+      </center>
+   </body>
+   <script>
+      var time = 0;
+      //var unit;
+      /////////////
+      
+      
+      function start(){
+        setTimeout(timer,1000);
+      }
+      /////////
+      
+      function timer(){
+        if (time > 3600){
+          hours();
+        } else if(time < 59){
+            seconds();
+        }else{
+              minutes();
+        }
+      }
+        //////////
+        function seconds(){
+           time = time + 1;
+          unit = ' seconds';
+          time = time.toString();
+          if (time.length == 1){
+           time = "0"+time;
+       } 
+        document.getElementById('timer').innerHTML = "00:"+time;
+        time = parseInt(time);
+        start();
+        }
+        ////////////
+        function minutes(){ 
+            time = time + 1;
+            unit = " minutes";
+            var modTime = time;
+       modTime = modTime / 60;
+       var modMin = Math.floor(modTime);
+      var modSec = modTime - Math.floor(modTime);
+        modSec = modSec * 60;
+       modSec = Math.ceil(modSec *100)/100;
+       modSec = Math.floor(modSec);
+      
+       modSec = modSec.toString();
+          if (modSec.length == 1){
+           modSec = "0"+modSec;
+       } 
+       document.getElementById('timer').innerHTML = modMin+":"+modSec;
+       modSec= parseInt(modSec);
+       start();
+        }
+          //////////
+        function hours(){
+            time = time + 1;
+            var modTime = time;
+       modTime = modTime / 3600;
+       var modHours = Math.floor(modTime);
+       modHours = modHours.toString();
+       if (modHours.length == 1){
+         modHours = "0"+modHours;
+       }
+      var modSec = modTime - Math.floor(modTime);
+        modSec = modSec * 360;
+       modSec = Math.round(modSec *100);
+      
+          if(modSec > 59){
+          //var modMins = (modHours / 6);
+         var modMins = (time / 60)/10;
+         modMins = modMins - Math.floor(modMins);
+         modMins = (modMins *10);
+         modMins = Math.floor(modMins);
+          //modMins =modMins - Math.round(modMins)
+          Math.floor(modMins);
+          modSec = time % 60;
+          //modSec =  (modSec / 60);
+          //modSec = (modSec *1000.44)/1000;
+            //modSec = modSec - Math.floor(modSec);
+          //Math.floor(modSec *100)/100; 
+          }else{
+              modMins = 0;
+          }
+      
+       modSec = modSec.toString();
+          if (modSec.length == 1){
+           modSec = "0"+modSec;
+       } 
+      
+       modMins = modMins.toString();
+      
+          if (modMins.length == 1){
+            modMins = "0"+modMins;
+          }
+      
+       document.getElementById('timer').innerHTML = modHours+":"+modMins+":"+modSec;
+       modSec= parseInt(modSec);
+       modMins= parseInt(modMins);
+      modHours= parseInt(modHours);
+
+       hoursAdjust();
+      
+      
+        }
+        function hoursAdjust(){
+           setTimeout(hours,1000);
+        }
+        function pause(){
+            document = document.readyState;
+        }
+   </script>
+</html>
