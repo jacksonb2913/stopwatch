@@ -58,7 +58,7 @@
          00:00:00
          </h2>
          <button onclick = start()>Start</button>
-         <button onclick = pause()>Pause</button>
+         <button id = "pause" onclick = pause()>Pause</button>
          <button onclick = Reset()>Reset</button>
       </div>
       <footer>
@@ -81,6 +81,9 @@
       /////////
       
       function timer(){
+        document.getElementById('pause').onclick = function() {
+   alert("button was clicked");
+}​;​
         if (time > 3600){
           hours();
         } else if(time < 59){
